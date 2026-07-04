@@ -47,6 +47,9 @@ def alta_proveedor():
     if not cuit.get().isdigit():
         messagebox.showerror("Error", "El CUIT debe ser numérico (sin guiones).")
         return
+    if not telefono.get().isdigit():
+        messagebox.showerror("Error", "El Teléfono debe ser numérico.")
+        return
 
     proveedores = leer_proveedores()
     for p in proveedores:
@@ -108,7 +111,7 @@ def seleccionar_proveedor(event):
 
 ventana = tk.Tk()
 ventana.title("Gestión de Proveedores")
-ventana.geometry("900x550")
+ventana.geometry("1000x550")
 ventana.resizable(False, False)
 ventana.configure(bg="#f4f6fa")
 
@@ -122,7 +125,7 @@ estado = tk.StringVar(value="ACTIVO")
 tk.Label(ventana, text="GESTIÓN DE PROVEEDORES", font=("Arial", 22, "bold"), bg="#f4f6fa", fg="#172033").pack(pady=15)
 
 frame_form = tk.Frame(ventana, bg="white", padx=20, pady=20, relief="ridge", borderwidth=1)
-frame_form.place(x=30, y=80, width=400, height=400)
+frame_form.place(x=30, y=80, width=450, height=400)
 
 tk.Label(frame_form, text="Datos del proveedor", font=("Arial", 14, "bold"), bg="white").grid(row=0, column=0, columnspan=2, pady=10)
 
@@ -142,7 +145,7 @@ tk.Button(frame_form, text="Baja", width=12, bg="#DC2626", fg="white", font=("Ar
 tk.Button(frame_form, text="Limpiar", width=12, bg="#6B7280", fg="white", font=("Arial", 9, "bold"), command=limpiar_campos).grid(row=9, column=1, pady=5)
 
 frame_tabla = tk.Frame(ventana, bg="white")
-frame_tabla.place(x=450, y=80, width=420, height=360)
+frame_tabla.place(x=450, y=80, width=500, height=360)
 
 columnas = ("codigo", "razon_social", "cuit", "telefono", "direccion", "estado")
 tabla = ttk.Treeview(frame_tabla, columns=columnas, show="headings")
